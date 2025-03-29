@@ -3,12 +3,15 @@ import { isNumeric, isValidNIK, isValidPhoneNumber } from "@/utils/validator";
 import { Button, Form, Input, Radio, RadioGroup } from "@heroui/react";
 import { FormEvent, useState } from "react";
 
+type SubmitError = { name?: string };
+
 export default function TambahGuru() {
   const [namaLengkap, setNameLengkap] = useState("");
   const [NIK, setNIK] = useState("");
   const [gender, setGender] = useState("laki-laki");
   const [alamat, setAlamat] = useState("");
   const [nomorTelepon, setNomorTelepon] = useState("");
+  const [submitErrors, setSubmitErrors] = useState<SubmitError>({});
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,7 +23,23 @@ export default function TambahGuru() {
     <Form
       className=""
       onSubmit={handleSubmit}
+      validationErrors={submitErrors}
     >
+      <Input
+        isRequired
+        errorMessage={({ validationDetails }) => {
+          if (validationDetails.valueMissing) {
+            return "Please enter your name";
+          }
+
+          return submitErrors.name;
+        }}
+        label="Name"
+        labelPlacement="outside"
+        name="name"
+        placeholder="Enter your name"
+      />
+
       <Input
         label="Nama lengkap"
         placeholder="Masukkan nama lengkap"
@@ -32,6 +51,9 @@ export default function TambahGuru() {
           if (validationDetails.valueMissing) {
             return "Nama lengkap harus diisi";
           }
+
+          console.log("here");
+          return submitErrors.name;
         }}
       />
 
@@ -115,6 +137,8 @@ export default function TambahGuru() {
           if (validationDetails.customError) {
             return validationErrors[0];
           }
+
+          return;
         }}
         validate={(value) => {
           if (value && !isValidPhoneNumber(value)) {

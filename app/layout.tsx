@@ -1,11 +1,10 @@
 import "@/styles/globals.css";
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 
 import { Providers } from "./providers";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-import { Button } from "@heroui/button";
 
 export const metadata: Metadata = {
   title: {
@@ -27,9 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head />
       <body className={`min-h-screen bg-background font-sans antialiased ${fontSans.variable} light`}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "light", enableSystem: false }}>
-          <div>Hello</div>
-          <Button>YES</Button>
-          {children}
+          <div className="max-w-4xl bg-pink-100 m-auto">{children}</div>
         </Providers>
       </body>
     </html>

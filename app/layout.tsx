@@ -26,7 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head />
       <body className={`min-h-screen bg-background font-sans antialiased ${fontSans.variable} light`}>
         <Providers themeProps={{ attribute: "class", defaultTheme: "light", enableSystem: false }}>
-          <div className="max-w-4xl bg-pink-100 m-auto">{children}</div>
+          <div className="max-w-4xl bg-slate-100 m-auto p-4">{children}</div>
         </Providers>
       </body>
     </html>

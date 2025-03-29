@@ -18,7 +18,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center">
+    <div className="min-h-[calc(100vh-2rem)] flex justify-center items-center">
       <Form
         className="bg-slate-100 rounded-lg p-8 flex flex-col gap-4"
         onSubmit={handleSubmit}
